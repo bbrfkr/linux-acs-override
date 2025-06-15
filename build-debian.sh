@@ -11,4 +11,6 @@ patch -p1 < ../acso.patch
 make olddefconfig
 sed -i 's/^CONFIG_SYSTEM_TRUSTED_KEYS.*/CONFIG_SYSTEM_TRUSTED_KEYS=""/' .config
 sed -i 's/^CONFIG_SYSTEM_REVOCATION_KEYS.*/CONFIG_SYSTEM_REVOCATION_KEYS=""/' .config
+sed -i 's/^# CONFIG_MODULE_COMPRESS_NONE.*/CONFIG_MODULE_COMPRESS_NONE=y/' .config
+sed -i 's/^CONFIG_MODULE_COMPRESS_ZSTD.*/# CONFIG_MODULE_COMPRESS_ZSTD is not set/' .config
 sudo make -j $(nproc) bindeb-pkg LOCALVERSION=-acso KDEB_PKGVERSION=$(make kernelversion)-1
